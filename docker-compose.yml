@@ -1,13 +1,18 @@
-version: "3"
+version: '3'
 
 services:
-  ubuntu:
-    image: zhonger/ubuntu:latest
-    container_name: dev
-    environment:
-     - GITHUB_NAME=zhonger
+  worker:
+    image: zhonger/slurm:latest
+    container_name: worker
     stdin_open: true
     tty: true
     volumes:
-     - /etc/localtime:/etc/localtime
+      - /etc/localtime:/etc/localtime
+      - ./slurm.conf:/etc/slurm/slurm.conf
+      - ./hosts:/etc/hosts
+      # - ./data:/home/ubuntu/data
+    ports:
+      - 6817:6817
+      - 6818:6818
     restart: always
+    hostname: worker
