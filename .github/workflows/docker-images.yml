@@ -6,8 +6,8 @@ on:
       - v*
 
 env:
-  APP_NAME: ubuntu
-  DOCKERHUB_REPO: zhonger/ubuntu
+  APP_NAME: slurm
+  DOCKERHUB_REPO: zhonger/slurm
 
 jobs:
   docker:
