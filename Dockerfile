@@ -1,4 +1,4 @@
-FROM zhonger/ubuntu:advance
+FROM zhonger/ubuntu:advance-focal
 
 LABEL maintainer="zhonger zhonger@live.cn"
 
