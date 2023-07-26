@@ -2,9 +2,19 @@ FROM zhonger/ubuntu:advance-focal
 
 LABEL maintainer="zhonger zhonger@live.cn"
 
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=Asia/Tokyo
+
 # APT updates
-RUN sudo apt-get update \
-    && sudo apt-get upgrade -y
+USER root
+RUN apt-get update \
+    && apt-get upgrade -y 
+
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y tzdata \ 
+    && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
+    && echo "Asia/Tokyo" > /etc/timezone
+
+USER ubuntu
 
 # Install munge & slurm
 RUN sudo apt-get install munge slurm-wlm slurm-wlm-doc slurm-wlm-torque -y \
